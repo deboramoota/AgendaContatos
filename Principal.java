@@ -1,50 +1,22 @@
 package br.edu.principal;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 
 public class Principal {
-
-    public static void main(String[] args) {
-
-        List<String> nomes = new ArrayList<>();
-        List<String> celulares = new ArrayList<>();
-        List<String> emails = new ArrayList<>();
-
-        int opcao;
-
-        Scanner sc = new Scanner(System.in);
-
-        Uteis.mostraInicializacao();
-
-        while (true) {
-
-            Uteis.mostraMenu();
-
-            opcao = Uteis.selecionaOpcao(sc);
-
-            switch (opcao) {
-
-                case 1 -> Agenda.adicionar(sc, nomes, celulares, emails);
-
-                case 2 -> Agenda.listar(nomes, celulares, emails);
-
-                case 3 -> Agenda.pesquisar(sc, nomes, celulares, emails);
-
-                case 4 -> Agenda.atualizar(sc, nomes, celulares, emails);
-
-                case 5 -> Agenda.excluir(sc, nomes, celulares, emails);
-
-                case 6 -> {
-                    System.out.println("Saindo da Agenda de Contatos...");
-                    return;
-                }
-
-                case 7 -> Uteis.sobre();
-
-                default -> System.out.println("Opção inválida!");
-            }
-        }
-    }
-}
+	 public static void main(String[] args) {
+		 String nome ="Fulano";
+		 String celular="85999999999";
+		 String email = "fulano@email.com";
+		 
+		 try {
+			 PrintWriter pw = new PrintWriter(new FileWriter("arquivo.txt"));
+			 pw.println(nome + ";" + celular + ";" + email);
+			 pw.close();
+		 }catch (IOException ex) {
+			 System.out.println("Erro ao escrever no arquivo!");
+		 }
+	 }
+ }
